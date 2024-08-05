@@ -4,7 +4,7 @@ import 'package:ideavista/main.dart' as app;
 
 void main() {
   testWidgets('Home Page Test', (WidgetTester tester) async {
-    app.main();
+    await app.main();
     await tester.pumpWidget(app.Root());
 
     await tester.pumpAndSettle();

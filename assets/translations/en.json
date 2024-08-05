@@ -1,0 +1,24 @@
+{
+    "home": {
+        "title": "Home Page",
+        "description": "Home Page Description"
+    },
+    "general": {
+        "button": {
+            "save": "Save {}",
+            "cancel": "Cancel"
+        },
+        "dialog": {
+            "version": {
+                "title": "Version",
+                "content": "Version description"
+            }
+        }
+    },
+    "title": "Title",
+    "tabBar": {
+        "search": "Search",
+        "home": "Home",
+        "favorites": "Favorites"
+    }
+}
