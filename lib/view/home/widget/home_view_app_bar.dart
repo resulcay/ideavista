@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ideavista/utility/constant/color/color.dart';
+import 'package:ideavista/product/constant/color/color.dart';
 
 class HomeViewAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeViewAppBar({super.key});

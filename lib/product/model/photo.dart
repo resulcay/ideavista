@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ideavista/model/dimension.dart';
+import 'package:ideavista/product/model/dimension.dart';
 
 class Photo with EquatableMixin {
   Photo({

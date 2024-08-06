@@ -1,4 +1,4 @@
-import 'package:ideavista/model/photo.dart';
+import 'package:ideavista/product/model/photo.dart';
 
 abstract class DioInterface {
   Future<List<Photo>?> fetchPhotos({

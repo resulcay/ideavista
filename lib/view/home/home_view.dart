@@ -1,13 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:ideavista/network/dio_manager.dart';
+import 'package:ideavista/product/model/photo.dart';
 import 'package:ideavista/view/home/widget/home_view_app_bar.dart';
 import 'package:ideavista/view/home/widget/home_view_drawer.dart';
 import 'package:ideavista/view/home/widget/home_view_navbar.dart';
 import 'package:ideavista/view/home/widget/photo_tile.dart';
+import 'package:ideavista/view/home/mixin/home_view_mixin.dart';
 import 'package:ideavista/view_model/home/home_view_model.dart';
+import 'package:ideavista/view_model/home/home_view_state.dart';
 
+@RoutePage()
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -16,29 +21,26 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView>
-    with HomeViewModel, SingleTickerProviderStateMixin {
+    with HomeViewMixin, SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HomeViewAppBar(),
-      bottomNavigationBar: HomeViewBottomNavbar(tabController: tabController),
-      drawer: HomeViewDrawer(mainContext: context),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: FutureBuilder(
-            future: DioManager().fetchPhotos(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              }
-              if (snapshot.hasError) {
-                return Text('Error: ${snapshot.error}');
-              }
-              if (snapshot.hasData) {
-                final photos = snapshot.data!;
-
-                return AnimationLimiter(
+    return BlocProvider(
+      create: (context) => viewModel,
+      child: BlocSelector<HomeViewModel, HomeViewState, List<Photo>?>(
+        selector: (state) => state.photos ?? [],
+        builder: (context, state) {
+          if (state!.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Scaffold(
+            appBar: HomeViewAppBar(),
+            bottomNavigationBar:
+                HomeViewBottomNavbar(tabController: tabController),
+            drawer: HomeViewDrawer(mainContext: context),
+            body: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: AnimationLimiter(
                   child: MasonryGridView.builder(
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
@@ -46,7 +48,7 @@ class _HomeViewState extends State<HomeView>
                         SliverSimpleGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
-                    itemCount: photos.length,
+                    itemCount: state.length,
                     itemBuilder: (context, index) {
                       return AnimationConfiguration.staggeredList(
                         position: index,
@@ -56,20 +58,18 @@ class _HomeViewState extends State<HomeView>
                           child: FadeInAnimation(
                             child: PhotoTile(
                               index: index,
-                              photo: photos[index],
+                              photo: state[index],
                             ),
                           ),
                         ),
                       );
                     },
                   ),
-                );
-              }
-
-              return const SizedBox();
-            },
-          ),
-        ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

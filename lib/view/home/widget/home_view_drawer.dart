@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ideavista/utility/constant/color/color.dart';
-import 'package:ideavista/utility/constant/enum/locales.dart';
-import 'package:ideavista/utility/language/locale_keys.g.dart';
+import 'package:ideavista/product/constant/color/color.dart';
+import 'package:ideavista/product/constant/enum/locales.dart';
+import 'package:ideavista/product/language/locale_keys.g.dart';
 
 class HomeViewDrawer extends StatelessWidget {
   const HomeViewDrawer({

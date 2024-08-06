@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ideavista/utility/init/app_init.dart';
-import 'package:ideavista/utility/language/language_manager.dart';
-import 'package:ideavista/utility/theme/dark_theme.dart';
-import 'package:ideavista/utility/theme/light_theme.dart';
-import 'package:ideavista/view/home/home_view.dart';
+import 'package:ideavista/product/init/app_init.dart';
+import 'package:ideavista/product/language/language_manager.dart';
+import 'package:ideavista/product/navigation/route_manager.dart';
+import 'package:ideavista/product/theme/dark_theme.dart';
+import 'package:ideavista/product/theme/light_theme.dart';
 
 Future<void> main() async {
   await ApplicationInitialization().initConfig();
@@ -16,7 +16,8 @@ class Root extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: RouteManager().config(),
       title: 'IdeaVista',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
@@ -24,7 +25,6 @@ class Root extends StatelessWidget {
       locale: context.locale,
       theme: LightTheme().theme,
       darkTheme: DarkTheme().theme,
-      home: const HomeView(),
     );
   }
 }

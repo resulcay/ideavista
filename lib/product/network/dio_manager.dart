@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:ideavista/dto/photo_dto.dart';
-import 'package:ideavista/model/photo.dart';
-import 'package:ideavista/network/dio_interface.dart';
-import 'package:ideavista/utility/env/env_manager.dart';
+import 'package:ideavista/product/dto/photo_dto.dart';
+import 'package:ideavista/product/model/photo.dart';
+import 'package:ideavista/product/network/dio_interface.dart';
+import 'package:ideavista/product/env/env_manager.dart';
 import 'package:logger/logger.dart';
 
 class DioManager implements DioInterface {

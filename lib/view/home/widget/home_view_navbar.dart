@@ -1,7 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:ideavista/utility/language/locale_keys.g.dart';
+import 'package:ideavista/product/language/locale_keys.g.dart';
 
 class HomeViewBottomNavbar extends StatelessWidget
     implements PreferredSizeWidget {

@@ -1,19 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:ideavista/view/home/home_view.dart';
+import 'package:ideavista/product/base/base_cubit.dart';
+import 'package:ideavista/product/network/dio_manager.dart';
+import 'package:ideavista/view_model/home/home_view_state.dart';
 
-mixin HomeViewModel on State<HomeView> implements TickerProvider {
-  late final TabController tabController;
-  int pageCount = 3;
+class HomeViewModel extends BaseCubit<HomeViewState> {
+  HomeViewModel()
+      : super(
+          const HomeViewState(
+            isLoading: false,
+            photos: [],
+          ),
+        );
 
-  @override
-  void initState() {
-    tabController = TabController(length: pageCount, vsync: this);
-    super.initState();
+  void changeLoading() {
+    emit(state.copyWith(isLoading: !state.isLoading));
   }
 
-  @override
-  void dispose() {
-    tabController.dispose();
-    super.dispose();
+  Future<void> getPhotos() async {
+    final photos = await DioManager().fetchPhotos();
+    emit(state.copyWith(photos: photos));
   }
 }

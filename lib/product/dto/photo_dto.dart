@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ideavista/model/photo.dart';
+import 'package:ideavista/product/model/photo.dart';
 
 class PhotoDTO with EquatableMixin {
   PhotoDTO({

@@ -16,7 +16,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   easy_localization: ^3.0.7
   google_fonts: ^6.2.1
-  auto_route: ^8.3.0
+  auto_route: ^9.2.0
 
   # Utility
   easy_logger: ^0.0.2
@@ -38,7 +38,7 @@ dev_dependencies:
   
   # Core Dev Dependencies
   very_good_analysis: ^6.0.0
-  auto_route_generator: ^8.1.0
+  auto_route_generator: ^9.0.0
   envied_generator: ^0.5.4+1
   build_runner: ^2.4.11
   mockito: ^5.4.4

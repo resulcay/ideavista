@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ideavista/model/photo.dart';
+import 'package:ideavista/product/model/photo.dart';
 
 class PhotoTile extends StatefulWidget {
   const PhotoTile({
